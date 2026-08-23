@@ -1,0 +1,6 @@
+{
+  "name": "DNA Data Survivor",
+  "description": "Interactive educational simulation exploring DNA data storage, genetic algorithms, biological noise, and data recovery.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
