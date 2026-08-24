@@ -134,4 +134,4 @@ export interface ResearchChartDataPoint {
   gaRecovery: number; // 0-100
 }
 
-export type SimulationStep = 'encode' | 'evolve' | 'damage' | 'recover' | 'compare' | 'research';
+export type SimulationStep = 'encode' | 'evolve' | 'damage' | 'recover' | 'compare' | 'research' | 'ppt' | 'references';

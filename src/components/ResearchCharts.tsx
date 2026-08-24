@@ -10,6 +10,8 @@ import {
   Layers,
   Sparkles,
   BookOpen,
+  Presentation,
+  ArrowRight,
 } from 'lucide-react';
 
 interface ResearchChartsProps {
@@ -17,6 +19,8 @@ interface ResearchChartsProps {
   generationHistory: GenerationHistoryPoint[];
   onRerunBenchmark: () => void;
   isBenchmarking: boolean;
+  onProceedToPpt?: () => void;
+  onProceedToReferences?: () => void;
 }
 
 export const ResearchCharts: React.FC<ResearchChartsProps> = ({
@@ -24,6 +28,8 @@ export const ResearchCharts: React.FC<ResearchChartsProps> = ({
   generationHistory,
   onRerunBenchmark,
   isBenchmarking,
+  onProceedToPpt,
+  onProceedToReferences,
 }) => {
   const [hoveredPointIdx, setHoveredPointIdx] = useState<number | null>(null);
 
@@ -471,6 +477,43 @@ export const ResearchCharts: React.FC<ResearchChartsProps> = ({
               <span>Real-world laboratory DNA storage incorporates advanced chemistry (phosphoramidite synthesis, nanopore flow cells) and high-dimensional Reed-Solomon / Fountain coding.</span>
             </li>
           </ul>
+        </div>
+      </div>
+
+      {/* Action Next Steps */}
+      <div className="bg-slate-900 border-2 border-indigo-500/40 rounded-3xl p-5 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl">
+        <div className="space-y-1 text-center sm:text-left">
+          <h4 className="text-sm font-black text-white uppercase tracking-wider flex items-center justify-center sm:justify-start gap-2">
+            <Presentation className="w-4 h-4 text-indigo-400" />
+            <span>Ready for Defense & Presentation?</span>
+          </h4>
+          <p className="text-xs text-slate-300 font-medium">
+            Jump to the interactive Slide Deck (PPT) or explore peer-reviewed literature and citations in the References section.
+          </p>
+        </div>
+
+        <div className="flex items-center gap-3 flex-wrap">
+          {onProceedToReferences && (
+            <button
+              id="research-go-to-references-btn"
+              onClick={onProceedToReferences}
+              className="flex items-center gap-2 px-4 py-3 rounded-2xl bg-slate-800 hover:bg-slate-700 text-purple-300 font-bold text-xs border border-slate-700 transition cursor-pointer"
+            >
+              <BookOpen className="w-4 h-4 text-purple-400" />
+              <span>References Section</span>
+            </button>
+          )}
+
+          {onProceedToPpt && (
+            <button
+              id="research-proceed-to-ppt-btn"
+              onClick={onProceedToPpt}
+              className="flex items-center gap-2 px-5 py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-black text-xs uppercase shadow-[0_4px_0_#4338ca] active:translate-y-1 active:shadow-none transition cursor-pointer"
+            >
+              <span>View PPT Slide Deck</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          )}
         </div>
       </div>
     </div>

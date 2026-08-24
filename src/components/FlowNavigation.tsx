@@ -1,6 +1,6 @@
 import React from 'react';
 import { SimulationStep } from '../types';
-import { Binary, Dna, Flame, Sparkles, Swords, BarChart3, Check } from 'lucide-react';
+import { Binary, Dna, Flame, Sparkles, Swords, BarChart3, Presentation, BookOpen, Check } from 'lucide-react';
 
 interface FlowNavigationProps {
   currentStep: SimulationStep;
@@ -25,7 +25,7 @@ const STEPS: StepMeta[] = [
     id: 'encode',
     number: 1,
     label: 'ENCODE',
-    sublabel: 'Text → Binary → DNA',
+    sublabel: 'Binary → DNA',
     icon: Binary,
     activeBorder: 'border-indigo-500 ring-2 ring-indigo-500/30',
     activeBg: 'bg-indigo-950/80',
@@ -47,7 +47,7 @@ const STEPS: StepMeta[] = [
     id: 'damage',
     number: 3,
     label: 'DAMAGE',
-    sublabel: 'Simulate Noise & Errors',
+    sublabel: 'Noise & Errors',
     icon: Flame,
     activeBorder: 'border-rose-500 ring-2 ring-rose-500/30',
     activeBg: 'bg-rose-950/80',
@@ -58,7 +58,7 @@ const STEPS: StepMeta[] = [
     id: 'recover',
     number: 4,
     label: 'RECOVER',
-    sublabel: 'Error Correction Check',
+    sublabel: 'Error Correction',
     icon: Sparkles,
     activeBorder: 'border-purple-500 ring-2 ring-purple-500/30',
     activeBg: 'bg-purple-950/80',
@@ -68,7 +68,7 @@ const STEPS: StepMeta[] = [
   {
     id: 'compare',
     number: 5,
-    label: 'COMPARISON',
+    label: 'COMPARE',
     sublabel: 'Raw vs GA Battle',
     icon: Swords,
     activeBorder: 'border-cyan-500 ring-2 ring-cyan-500/30',
@@ -79,13 +79,35 @@ const STEPS: StepMeta[] = [
   {
     id: 'research',
     number: 6,
-    label: 'RESEARCH GRAPH',
-    sublabel: 'Fidelity & Trends',
+    label: 'RESEARCH',
+    sublabel: 'Fidelity Charts',
     icon: BarChart3,
     activeBorder: 'border-amber-500 ring-2 ring-amber-500/30',
     activeBg: 'bg-amber-950/80',
     activeText: 'text-amber-300',
     badgeBg: 'bg-amber-500 text-slate-950',
+  },
+  {
+    id: 'ppt',
+    number: 7,
+    label: 'PPT DECK',
+    sublabel: 'Slide Presentation',
+    icon: Presentation,
+    activeBorder: 'border-indigo-400 ring-2 ring-indigo-400/30',
+    activeBg: 'bg-indigo-950/90',
+    activeText: 'text-indigo-300',
+    badgeBg: 'bg-indigo-500 text-white',
+  },
+  {
+    id: 'references',
+    number: 8,
+    label: 'REFERENCES',
+    sublabel: 'Papers & Links',
+    icon: BookOpen,
+    activeBorder: 'border-purple-400 ring-2 ring-purple-400/30',
+    activeBg: 'bg-purple-950/90',
+    activeText: 'text-purple-300',
+    badgeBg: 'bg-purple-500 text-white',
   },
 ];
 
@@ -95,9 +117,9 @@ export const FlowNavigation: React.FC<FlowNavigationProps> = ({
   completedSteps,
 }) => {
   return (
-    <div className="w-full bg-slate-950/90 border-b border-slate-800 py-3.5 px-4 sm:px-6" id="flow-navigation">
+    <div className="w-full bg-slate-950/90 border-b border-slate-800 py-3.5 px-3 sm:px-6" id="flow-navigation">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 sm:gap-2.5">
           {STEPS.map((step) => {
             const Icon = step.icon;
             const isActive = currentStep === step.id;
@@ -108,7 +130,7 @@ export const FlowNavigation: React.FC<FlowNavigationProps> = ({
                 key={step.id}
                 id={`step-nav-${step.id}`}
                 onClick={() => onSelectStep(step.id)}
-                className={`flex items-center gap-2.5 p-2.5 sm:p-3 rounded-2xl border-2 text-left transition-all duration-200 cursor-pointer relative overflow-hidden group shadow-lg ${
+                className={`flex items-center gap-2 p-2 sm:p-2.5 rounded-2xl border-2 text-left transition-all duration-200 cursor-pointer relative overflow-hidden group shadow-md ${
                   isActive
                     ? `${step.activeBg} ${step.activeBorder} shadow-xl scale-[1.02]`
                     : isCompleted
@@ -118,7 +140,7 @@ export const FlowNavigation: React.FC<FlowNavigationProps> = ({
               >
                 {/* Step indicator circle / icon */}
                 <div
-                  className={`w-7 h-7 rounded-xl flex items-center justify-center font-mono text-xs font-black flex-shrink-0 transition-all ${
+                  className={`w-6 h-6 sm:w-7 sm:h-7 rounded-xl flex items-center justify-center font-mono text-[11px] font-black flex-shrink-0 transition-all ${
                     isActive
                       ? `${step.badgeBg} shadow-md scale-105`
                       : isCompleted
@@ -127,7 +149,7 @@ export const FlowNavigation: React.FC<FlowNavigationProps> = ({
                   }`}
                 >
                   {isCompleted && !isActive ? (
-                    <Check className="w-4 h-4 text-emerald-400 stroke-[3]" />
+                    <Check className="w-3.5 h-3.5 text-emerald-400 stroke-[3]" />
                   ) : (
                     <span>{step.number}</span>
                   )}
@@ -136,14 +158,14 @@ export const FlowNavigation: React.FC<FlowNavigationProps> = ({
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-1">
                     <span
-                      className={`text-xs font-black tracking-wider uppercase truncate ${
+                      className={`text-[11px] sm:text-xs font-black tracking-wider uppercase truncate ${
                         isActive ? 'text-white' : 'text-slate-200'
                       }`}
                     >
                       {step.label}
                     </span>
                   </div>
-                  <p className="text-[10px] text-slate-400 truncate leading-tight mt-0.5 font-medium">
+                  <p className="text-[9px] sm:text-[10px] text-slate-400 truncate leading-tight mt-0.5 font-medium">
                     {step.sublabel}
                   </p>
                 </div>
@@ -155,3 +177,4 @@ export const FlowNavigation: React.FC<FlowNavigationProps> = ({
     </div>
   );
 };
+

@@ -29,6 +29,8 @@ import { DamageStep } from './components/DamageStep';
 import { RecoverStep } from './components/RecoverStep';
 import { ComparisonStep } from './components/ComparisonStep';
 import { ResearchCharts } from './components/ResearchCharts';
+import { PresentationStep } from './components/PresentationStep';
+import { ReferencesStep } from './components/ReferencesStep';
 import { HowItWorksModal } from './components/HowItWorksModal';
 import { SettingsModal } from './components/SettingsModal';
 import { DnaHelixVisual } from './components/DnaHelixVisual';
@@ -308,6 +310,16 @@ export default function App() {
       <Header
         onOpenHowItWorks={() => setIsHowItWorksOpen(true)}
         onOpenSettings={() => setIsSettingsOpen(true)}
+        onOpenPpt={() => {
+          setHasStarted(true);
+          setCurrentStep('ppt');
+          setCompletedSteps((prev) => new Set([...prev, 'ppt']));
+        }}
+        onOpenReferences={() => {
+          setHasStarted(true);
+          setCurrentStep('references');
+          setCompletedSteps((prev) => new Set([...prev, 'references']));
+        }}
         onReset={handleFullReset}
       />
 
@@ -463,11 +475,38 @@ export default function App() {
                 generationHistory={generationHistory}
                 onRerunBenchmark={handleRerunBenchmark}
                 isBenchmarking={isBenchmarking}
+                onProceedToPpt={() => {
+                  setCompletedSteps((prev) => new Set([...prev, 'research']));
+                  setCurrentStep('ppt');
+                }}
+                onProceedToReferences={() => {
+                  setCompletedSteps((prev) => new Set([...prev, 'research']));
+                  setCurrentStep('references');
+                }}
+              />
+            )}
+
+            {currentStep === 'ppt' && (
+              <PresentationStep
+                onNavigateToStep={(step) => {
+                  setCompletedSteps((prev) => new Set([...prev, 'ppt']));
+                  setCurrentStep(step);
+                }}
+              />
+            )}
+
+            {currentStep === 'references' && (
+              <ReferencesStep
+                onNavigateToStep={(step) => {
+                  setCompletedSteps((prev) => new Set([...prev, 'references']));
+                  setCurrentStep(step);
+                }}
               />
             )}
           </div>
         </main>
       )}
+
 
       {/* Educational & Settings Modals */}
       <HowItWorksModal

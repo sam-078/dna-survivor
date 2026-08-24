@@ -1,15 +1,19 @@
 import React from 'react';
-import { Sparkles, HelpCircle, Sliders, RotateCcw, ShieldCheck, Dna } from 'lucide-react';
+import { Sparkles, HelpCircle, Sliders, RotateCcw, ShieldCheck, Dna, Presentation, BookOpen } from 'lucide-react';
 
 interface HeaderProps {
   onOpenHowItWorks: () => void;
   onOpenSettings: () => void;
+  onOpenPpt: () => void;
+  onOpenReferences: () => void;
   onReset: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   onOpenHowItWorks,
   onOpenSettings,
+  onOpenPpt,
+  onOpenReferences,
   onReset,
 }) => {
   return (
@@ -42,23 +46,43 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Header Action Buttons */}
         <div className="flex items-center gap-2 sm:gap-2.5 flex-wrap">
           <button
+            id="header-ppt-btn"
+            onClick={onOpenPpt}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-white/20 hover:bg-white/30 text-white border border-white/30 transition shadow-sm cursor-pointer"
+            title="Open Presentation PPT Slide Deck"
+          >
+            <Presentation className="w-3.5 h-3.5 text-cyan-300" />
+            <span>PPT Deck</span>
+          </button>
+
+          <button
+            id="header-references-btn"
+            onClick={onOpenReferences}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-white/20 hover:bg-white/30 text-white border border-white/30 transition shadow-sm cursor-pointer"
+            title="Open Academic References & Literature Links"
+          >
+            <BookOpen className="w-3.5 h-3.5 text-purple-300" />
+            <span>References</span>
+          </button>
+
+          <button
             id="header-how-it-works-btn"
             onClick={onOpenHowItWorks}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-white/20 hover:bg-white/30 text-white border border-white/30 transition shadow-sm cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-white/20 hover:bg-white/30 text-white border border-white/30 transition shadow-sm cursor-pointer"
             title="Learn how DNA Storage and Genetic Algorithms work"
           >
-            <HelpCircle className="w-4 h-4 text-cyan-300" />
+            <HelpCircle className="w-3.5 h-3.5 text-cyan-300" />
             <span>How It Works</span>
           </button>
 
           <button
             id="header-settings-btn"
             onClick={onOpenSettings}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-white/20 hover:bg-white/30 text-white border border-white/30 transition shadow-sm cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-white/20 hover:bg-white/30 text-white border border-white/30 transition shadow-sm cursor-pointer"
             title="Configure Genetic Algorithm parameters"
           >
-            <Sliders className="w-4 h-4 text-amber-300" />
-            <span>GA Settings</span>
+            <Sliders className="w-3.5 h-3.5 text-amber-300" />
+            <span>Settings</span>
           </button>
 
           <button
@@ -67,7 +91,7 @@ export const Header: React.FC<HeaderProps> = ({
             className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-black bg-rose-500 hover:bg-rose-400 text-slate-950 border border-rose-300 transition shadow-sm cursor-pointer"
             title="Reset simulation to initial state"
           >
-            <RotateCcw className="w-4 h-4" />
+            <RotateCcw className="w-3.5 h-3.5" />
             <span>Reset</span>
           </button>
         </div>
@@ -75,3 +99,4 @@ export const Header: React.FC<HeaderProps> = ({
     </header>
   );
 };
+
