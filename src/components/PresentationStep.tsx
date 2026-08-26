@@ -16,7 +16,8 @@ import {
   CheckCircle2,
   Layers,
   Presentation,
-  ShieldCheck
+  ShieldCheck,
+  Users
 } from 'lucide-react';
 import * as pdfjsLib from 'pdfjs-dist';
 import { SimulationStep } from '../types';
@@ -216,6 +217,37 @@ export const PresentationStep: React.FC<PresentationStepProps> = ({ onNavigateTo
       }`}
       id="presentation-pdf-viewer"
     >
+      {/* BTech CE-C Presentation Team Header */}
+      <div className="w-full bg-slate-900/95 border border-slate-800 rounded-2xl p-3.5 mb-3 shadow-lg flex flex-col md:flex-row items-center justify-between gap-3 text-center md:text-left">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-cyan-950 border border-cyan-500/40 text-cyan-400 font-black flex items-center justify-center flex-shrink-0">
+            <Users className="w-5 h-5" />
+          </div>
+          <div>
+            <div className="flex items-center gap-2 justify-center md:justify-start">
+              <span className="text-sm font-black text-white tracking-wide uppercase font-mono">BTech CE-C</span>
+              <span className="text-[10px] font-mono font-bold bg-cyan-950 text-cyan-300 border border-cyan-700 px-2 py-0.5 rounded-full">
+                Seminar Presentation Team
+              </span>
+            </div>
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 mt-1.5 text-xs font-mono">
+              <span className="bg-slate-950/90 text-slate-200 px-2.5 py-1 rounded-lg border border-slate-800 shadow-xs">
+                <strong className="text-white">LAVANYAMAY AGRAWAL</strong><span className="text-cyan-400 font-bold">- C111</span>
+              </span>
+              <span className="bg-slate-950/90 text-slate-200 px-2.5 py-1 rounded-lg border border-slate-800 shadow-xs">
+                <strong className="text-white">SAMIYA AHMED</strong><span className="text-cyan-400 font-bold">-C114</span>
+              </span>
+              <span className="bg-slate-950/90 text-slate-200 px-2.5 py-1 rounded-lg border border-slate-800 shadow-xs">
+                <strong className="text-white">TANAYA ATHAVLE</strong><span className="text-cyan-400 font-bold">- C121</span>
+              </span>
+              <span className="bg-slate-950/90 text-slate-200 px-2.5 py-1 rounded-lg border border-slate-800 shadow-xs">
+                <strong className="text-white">TANVI</strong><span className="text-cyan-400 font-bold">-C102</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* TOP ATTACHED PDF STATUS BAR */}
       <div className="w-full flex items-center justify-between mb-3 px-2 text-xs flex-wrap gap-2">
         <div className="flex items-center gap-2">
